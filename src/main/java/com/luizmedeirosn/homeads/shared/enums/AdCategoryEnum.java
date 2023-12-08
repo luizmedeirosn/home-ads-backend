@@ -2,18 +2,18 @@ package com.luizmedeirosn.homeads.shared.enums;
 
 public enum AdCategoryEnum {
     
-    BETH_AND_BATH (1),
+    BED_AND_BATH (1),
     APPLIANCES (2),
     FURNITURE (3),
     TOOLS (4);
 
-    private int code; // Código do tipo enumerado;
+    private int code;
 
-    private AdCategoryEnum(int code) { // O construtor é private devido a ser um caso especial;
+    private AdCategoryEnum(int code) {
         this.code = code;
     }
 
-    public int getCode() { // Torna o code acessível fora da classe;
+    public int getCode() {
         return code;
     }
 
@@ -23,7 +23,7 @@ public enum AdCategoryEnum {
                 return value;
             }
         }
-        throw new IllegalArgumentException("Invalid order status code");
+        throw new IllegalArgumentException("Invalid AD Category code");
     }
 
 
