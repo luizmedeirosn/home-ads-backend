@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-import org.springframework.lang.NonNull;
+import org.hibernate.annotations.Check;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.luizmedeirosn.homeads.shared.dto.request.PostAdDTO;
+import com.luizmedeirosn.homeads.shared.dto.request.UpdateAdDTO;
 import com.luizmedeirosn.homeads.shared.enums.AdCategoryEnum;
 
 import jakarta.persistence.Column;
@@ -32,26 +35,24 @@ public class Ad implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String title;
 
-    @NonNull
-    @Column(columnDefinition = "TEXT", unique = true)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
 
-    @NonNull
-    @Column(name = "average_price")
+    @Column(name = "average_price", nullable = false)
     private BigDecimal averagePrice;
 
-    @NonNull
+    @Column(nullable = false)
+    @Check(constraints = "score > 0 AND score <= 5")
     private Integer rating;
 
-    @NonNull
+    @Column(nullable = false)
     private AdCategoryEnum category;
     
-    @NonNull
-    @Column(name = "publication_date")
+    @Column(name = "publication_date", nullable = false)
+    @DateTimeFormat(pattern = "\"yyy-MM-dd'T'HH:mm:ss'Z'\"", iso = ISO.DATE_TIME)
     private Instant publicationDate;
 
     public Ad(PostAdDTO postAdDTO) {
@@ -61,6 +62,15 @@ public class Ad implements Serializable {
         rating = postAdDTO.rating();
         category = postAdDTO.category();
         publicationDate = postAdDTO.publicationDate();
+    }
+
+    public void updateData(UpdateAdDTO updateAdDTO) {
+        title = updateAdDTO.title();
+        description = updateAdDTO.description();
+        averagePrice = new BigDecimal(updateAdDTO.averagePrice());
+        rating = updateAdDTO.rating();
+        category = updateAdDTO.category();
+        publicationDate = updateAdDTO.publicationDate();
     }
 
 }
