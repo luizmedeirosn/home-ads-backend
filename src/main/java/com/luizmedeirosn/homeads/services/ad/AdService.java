@@ -11,6 +11,7 @@ import com.luizmedeirosn.homeads.entities.Ad;
 import com.luizmedeirosn.homeads.repositories.ad.AdRepository;
 import com.luizmedeirosn.homeads.shared.dto.request.PostAdDTO;
 import com.luizmedeirosn.homeads.shared.dto.response.AdMinDTO;
+import com.luizmedeirosn.homeads.shared.exceptions.DatabaseException;
 
 @Service
 public class AdService {
@@ -25,7 +26,11 @@ public class AdService {
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public AdMinDTO save(PostAdDTO postAdDTO) {
-        return new AdMinDTO(adRepository.save(new Ad(postAdDTO)));
+        try {
+            return new AdMinDTO(adRepository.save(new Ad(postAdDTO)));
+        } catch (RuntimeException e) {
+            throw new DatabaseException("Constraint violation error");
+        }
     }
 
 }
