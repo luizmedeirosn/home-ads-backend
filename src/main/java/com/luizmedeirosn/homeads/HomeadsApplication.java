@@ -15,7 +15,7 @@ public class HomeadsApplication {
 			e.printStackTrace();
 			Thread.currentThread().interrupt();
 		}
-		
+
 		SpringApplication.run(HomeadsApplication.class, args);
 	}
 
