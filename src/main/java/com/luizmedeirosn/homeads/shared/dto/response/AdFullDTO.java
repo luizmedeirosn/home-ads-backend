@@ -9,7 +9,7 @@ import com.luizmedeirosn.homeads.shared.enums.AdCategoryEnum;
 public record AdFullDTO(
         Long id,
         String title,
-        String description,
+        String adDescription,
         BigDecimal averagePrice,
         Integer rating,
         AdCategoryEnum category,
@@ -19,7 +19,7 @@ public record AdFullDTO(
         this(
                 ad.getId(),
                 ad.getTitle(),
-                ad.getDescription(),
+                ad.getAdDescription(),
                 ad.getAveragePrice(),
                 ad.getRating(),
                 ad.getCategory(),

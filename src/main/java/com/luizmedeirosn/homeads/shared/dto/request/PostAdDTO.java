@@ -14,7 +14,7 @@ import jakarta.validation.constraints.Size;
 public record PostAdDTO(
         @Size(min = 3, max = 50, message = "Enter a title between 3 and 50 characters") String title,
 
-        @Size(min = 40, max = 2000, message = "Enter a description between 40 and 1000 characters") String description,
+        @Size(min = 40, max = 2000, message = "Enter a description between 40 and 1000 characters") String adDescription,
 
         @Pattern(regexp = "^\\d+(\\.\\d{3})*(\\.\\d{1,2})?$") String averagePrice,
 

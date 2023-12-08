@@ -12,21 +12,27 @@ import com.luizmedeirosn.homeads.shared.dto.request.PostAdDTO;
 import com.luizmedeirosn.homeads.shared.dto.request.UpdateAdDTO;
 import com.luizmedeirosn.homeads.shared.enums.AdCategoryEnum;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tb_ad")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
+@EqualsAndHashCode
 public class Ad implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,8 +44,8 @@ public class Ad implements Serializable {
     @Column(unique = true, nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String description;
+    @Column(name = "ad_description", columnDefinition = "TEXT", nullable = false)
+    private String adDescription;
 
     @Column(name = "average_price", nullable = false)
     private BigDecimal averagePrice;
@@ -52,12 +58,15 @@ public class Ad implements Serializable {
     private AdCategoryEnum category;
     
     @Column(name = "publication_date", nullable = false)
-    @DateTimeFormat(pattern = "\"yyy-MM-dd'T'HH:mm:ss'Z'\"", iso = ISO.DATE_TIME)
+    @DateTimeFormat(pattern = "\"yyyy-MM-dd'T'HH:mm:ss'Z'\"", iso = ISO.DATE_TIME)
     private Instant publicationDate;
+
+    @OneToOne(mappedBy = "ad", cascade = CascadeType.ALL)
+    private AdImage image;
 
     public Ad(PostAdDTO postAdDTO) {
         title = postAdDTO.title();
-        description = postAdDTO.description();
+        adDescription = postAdDTO.adDescription();
         averagePrice = new BigDecimal(postAdDTO.averagePrice());
         rating = postAdDTO.rating();
         category = postAdDTO.category();
@@ -66,7 +75,7 @@ public class Ad implements Serializable {
 
     public void updateData(UpdateAdDTO updateAdDTO) {
         title = updateAdDTO.title();
-        description = updateAdDTO.description();
+        adDescription = updateAdDTO.adDescription();
         averagePrice = new BigDecimal(updateAdDTO.averagePrice());
         rating = updateAdDTO.rating();
         category = updateAdDTO.category();
