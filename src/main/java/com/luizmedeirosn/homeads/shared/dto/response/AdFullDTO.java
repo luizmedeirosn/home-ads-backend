@@ -1,22 +1,29 @@
 package com.luizmedeirosn.homeads.shared.dto.response;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 
 import com.luizmedeirosn.homeads.entities.Ad;
 import com.luizmedeirosn.homeads.shared.enums.AdCategoryEnum;
 
-public record AdMinDTO(
+public record AdFullDTO(
         Long id,
-        String name,
+        String title,
+        String description,
         BigDecimal averagePrice,
         Integer rating,
-        AdCategoryEnum category) {
-    public AdMinDTO(Ad ad) {
+        AdCategoryEnum category,
+        Instant publicationDate) {
+
+    public AdFullDTO(Ad ad) {
         this(
                 ad.getId(),
                 ad.getTitle(),
+                ad.getDescription(),
                 ad.getAveragePrice(),
                 ad.getRating(),
-                ad.getCategory());
+                ad.getCategory(),
+                ad.getPublicationDate());
     }
+
 }
