@@ -70,7 +70,8 @@ public class Ad implements Serializable {
         averagePrice = new BigDecimal(postAdDTO.averagePrice());
         rating = postAdDTO.rating();
         category = postAdDTO.category();
-        publicationDate = postAdDTO.publicationDate();
+        publicationDate = Instant.parse(postAdDTO.publicationDate());
+        image = new AdImage(this, postAdDTO.image());
     }
 
     public void updateData(UpdateAdDTO updateAdDTO) {

@@ -1,7 +1,15 @@
 package com.luizmedeirosn.homeads.entities;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Blob;
+import java.sql.SQLException;
+
+import javax.sql.rowset.serial.SerialBlob;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.luizmedeirosn.homeads.shared.exceptions.DatabaseException;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +34,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 public class AdImage implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -46,5 +54,16 @@ public class AdImage implements Serializable {
     @OneToOne
     @MapsId
     private Ad ad;
+
+    public AdImage(Ad ad, MultipartFile image) {
+        try {
+            adImageFilename = image.getOriginalFilename();
+            imageType = image.getContentType();
+            content = new SerialBlob(image.getBytes());
+            this.ad = ad;
+        } catch (SQLException | IOException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+    }
 
 }
