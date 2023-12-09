@@ -1,4 +1,4 @@
-package com.luizmedeirosn.homeads.repositories.ad;
+package com.luizmedeirosn.homeads.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

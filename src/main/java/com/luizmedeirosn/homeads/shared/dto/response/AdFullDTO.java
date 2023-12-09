@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 import com.luizmedeirosn.homeads.entities.Ad;
+import com.luizmedeirosn.homeads.services.AdImageService;
 import com.luizmedeirosn.homeads.shared.enums.AdCategoryEnum;
 
 public record AdFullDTO(
@@ -13,7 +14,8 @@ public record AdFullDTO(
         BigDecimal averagePrice,
         Integer rating,
         AdCategoryEnum category,
-        Instant publicationDate) {
+        Instant publicationDate,
+        String imageLink) {
 
     public AdFullDTO(Ad ad) {
         this(
@@ -23,7 +25,8 @@ public record AdFullDTO(
                 ad.getAveragePrice(),
                 ad.getRating(),
                 ad.getCategory(),
-                ad.getPublicationDate());
+                ad.getPublicationDate(),
+                AdImageService.createImageLink(ad.getId()));
     }
 
 }

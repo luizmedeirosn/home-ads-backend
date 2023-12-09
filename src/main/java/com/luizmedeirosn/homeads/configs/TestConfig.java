@@ -1,15 +1,24 @@
 package com.luizmedeirosn.homeads.configs;
 
+import java.io.File;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.Blob;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import com.luizmedeirosn.homeads.entities.Ad;
-import com.luizmedeirosn.homeads.repositories.ad.AdRepository;
+import com.luizmedeirosn.homeads.entities.AdImage;
+import com.luizmedeirosn.homeads.repositories.AdRepository;
 import com.luizmedeirosn.homeads.shared.enums.AdCategoryEnum;
 
 @Configuration
@@ -19,8 +28,7 @@ public class TestConfig implements CommandLineRunner {
     private AdRepository adRepository;
 
     @Override
-    public void run(String ...args) throws Exception {
-
+    public void run(String... args) throws Exception {
         Ad ad1 = new Ad(
                 null,
                 "Combo toalhas de banho",
@@ -105,7 +113,30 @@ public class TestConfig implements CommandLineRunner {
                 "Mantenha seus espaços impecáveis com nossa vassoura de pelo de 60cm, oferecendo uma varredura eficiente e fácil.",
                 new BigDecimal("18.55"), 4, AdCategoryEnum.TOOLS, Instant.now(), null);
 
-        adRepository.saveAll(Arrays.asList(
+        List<Ad> ads = adRepository.saveAll(Arrays.asList(
                 ad1, ad2, ad3, ad4, ad5, ad6, ad7, ad8, ad9, ad10, ad11, ad12, ad13, ad14, ad15, ad16));
+
+        
+        final String PICTURES_FOLDER_PATH = "/home/luizmedeirosn/Downloads/home-ads-backend/src/main/java/com/luizmedeirosn/homeads/configs/data";
+        File picturesFolder = new File(PICTURES_FOLDER_PATH);
+        File[] imagesArray = picturesFolder.listFiles(File::isFile);
+
+        List<File> imagesList = new ArrayList<>(Arrays.asList(imagesArray));
+        imagesList.sort((f1, f2) -> Integer.parseInt(f1.getName().split("-")[0]) - Integer.parseInt(f2.getName().split("-")[0]));
+
+
+        for (int i = 0; i < 16; i++) {
+            Ad ad = ads.get(i);
+            File image = imagesList.get(i);
+            Blob data = new SerialBlob(Files.readAllBytes(Paths.get(image.getAbsolutePath())));
+            String imageName = "image/" + image.getName().split("\\.")[1];
+
+            AdImage adImage = new AdImage(
+                null, image.getName(), imageName, data, ad
+            );
+
+            ad.setImage(adImage);
+            adRepository.save(ad);
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.luizmedeirosn.homeads.controllers.exceptions;
+package com.luizmedeirosn.homeads.controllers;
 
 import java.time.Instant;
 

@@ -1,4 +1,4 @@
-package com.luizmedeirosn.homeads.controllers.ad;
+package com.luizmedeirosn.homeads.controllers;
 
 import java.net.URI;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.luizmedeirosn.homeads.services.ad.AdService;
+import com.luizmedeirosn.homeads.services.AdService;
 import com.luizmedeirosn.homeads.shared.dto.request.PostAdDTO;
 import com.luizmedeirosn.homeads.shared.dto.request.UpdateAdDTO;
 import com.luizmedeirosn.homeads.shared.dto.response.AdFullDTO;

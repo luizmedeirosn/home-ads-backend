@@ -1,4 +1,4 @@
-package com.luizmedeirosn.homeads.services.ad;
+package com.luizmedeirosn.homeads.services;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.luizmedeirosn.homeads.entities.Ad;
-import com.luizmedeirosn.homeads.repositories.ad.AdRepository;
+import com.luizmedeirosn.homeads.repositories.AdRepository;
 import com.luizmedeirosn.homeads.shared.dto.request.PostAdDTO;
 import com.luizmedeirosn.homeads.shared.dto.request.UpdateAdDTO;
 import com.luizmedeirosn.homeads.shared.dto.response.AdFullDTO;
