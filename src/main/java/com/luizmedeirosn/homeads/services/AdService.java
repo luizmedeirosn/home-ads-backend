@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.luizmedeirosn.homeads.entities.Ad;
+import com.luizmedeirosn.homeads.entities.domain.Ad;
 import com.luizmedeirosn.homeads.repositories.AdRepository;
 import com.luizmedeirosn.homeads.shared.dto.request.PostAdDTO;
 import com.luizmedeirosn.homeads.shared.dto.request.UpdateAdDTO;

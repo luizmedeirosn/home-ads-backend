@@ -1,4 +1,4 @@
-package com.luizmedeirosn.homeads.entities;
+package com.luizmedeirosn.homeads.entities.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -21,18 +21,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "tb_ad")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
 public class Ad implements Serializable {
 
     private static final long serialVersionUID = 1L;

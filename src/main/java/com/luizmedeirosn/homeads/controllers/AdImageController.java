@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.luizmedeirosn.homeads.entities.AdImage;
+import com.luizmedeirosn.homeads.entities.domain.AdImage;
 import com.luizmedeirosn.homeads.services.AdImageService;
 import com.luizmedeirosn.homeads.shared.exceptions.DatabaseException;
 

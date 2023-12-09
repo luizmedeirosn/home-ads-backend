@@ -16,8 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.luizmedeirosn.homeads.entities.Ad;
-import com.luizmedeirosn.homeads.entities.AdImage;
+import com.luizmedeirosn.homeads.entities.domain.Ad;
+import com.luizmedeirosn.homeads.entities.domain.AdImage;
 import com.luizmedeirosn.homeads.repositories.AdRepository;
 import com.luizmedeirosn.homeads.shared.enums.AdCategoryEnum;
 

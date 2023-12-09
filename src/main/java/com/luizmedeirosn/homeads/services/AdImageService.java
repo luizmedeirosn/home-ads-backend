@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.luizmedeirosn.homeads.entities.AdImage;
+import com.luizmedeirosn.homeads.entities.domain.AdImage;
 import com.luizmedeirosn.homeads.repositories.AdImageRepository;
 
 @Service

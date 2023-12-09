@@ -1,4 +1,4 @@
-package com.luizmedeirosn.homeads.entities;
+package com.luizmedeirosn.homeads.entities.domain;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,18 +21,14 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "tb_ad_image")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
 public class AdImage implements Serializable {
 
     private static final long serialVersionUID = 1L;

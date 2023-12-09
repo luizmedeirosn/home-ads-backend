@@ -3,7 +3,7 @@ package com.luizmedeirosn.homeads.shared.dto.response;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-import com.luizmedeirosn.homeads.entities.Ad;
+import com.luizmedeirosn.homeads.entities.domain.Ad;
 import com.luizmedeirosn.homeads.services.AdImageService;
 import com.luizmedeirosn.homeads.shared.enums.AdCategoryEnum;
 
