@@ -1,4 +1,4 @@
-package com.luizmedeirosn.homeads.entities.domain;
+package com.luizmedeirosn.homeads.entities;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,6 +21,7 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +29,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_ad_image")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Data
 public class AdImage implements Serializable {
 
@@ -60,6 +62,12 @@ public class AdImage implements Serializable {
         } catch (SQLException | IOException e) {
             throw new DatabaseException(e.getMessage());
         }
+    }
+
+    public void updateData(MultipartFile adImage) throws SQLException, IOException {
+        adImageFilename = adImage.getOriginalFilename();
+        imageType = adImage.getContentType();
+        content = new SerialBlob(adImage.getBytes());
     }
 
 }
