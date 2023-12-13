@@ -1,12 +1,14 @@
 package com.luizmedeirosn.homeads.shared.dto.request;
 
 import io.micrometer.common.lang.NonNull;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public record PostUserDTO(
+public record SigninDTO(
 
-        @NonNull @NotBlank String userName,
+        @Email String email,
         @NonNull @NotBlank String password
 
 ) {
+
 }
