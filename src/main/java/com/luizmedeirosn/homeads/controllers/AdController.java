@@ -3,7 +3,6 @@ package com.luizmedeirosn.homeads.controllers;
 import java.net.URI;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -23,13 +21,14 @@ import com.luizmedeirosn.homeads.shared.dto.response.AdFullDTO;
 import com.luizmedeirosn.homeads.shared.dto.response.AdMinDTO;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/ads")
+@RequestMapping(value = "/api/ads")
+@RequiredArgsConstructor
 public class AdController {
 
-    @Autowired
-    private AdService adService;
+    private final AdService adService;
 
     @PostMapping
     public ResponseEntity<AdFullDTO> save(@ModelAttribute @Valid PostAdDTO postAdDTO) {
@@ -37,7 +36,7 @@ public class AdController {
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(adDTO.id())
+                .buildAndExpand(adDTO.getId())
                 .toUri();
         return ResponseEntity.created(uri).body(adDTO);
     }
@@ -53,7 +52,7 @@ public class AdController {
     }
 
     @PutMapping
-    public ResponseEntity<AdFullDTO> updateById(@RequestBody @Valid UpdateAdDTO updateAdDTO) {
+    public ResponseEntity<AdFullDTO> updateById(@ModelAttribute @Valid UpdateAdDTO updateAdDTO) {
         return ResponseEntity.ok().body(adService.updateById(updateAdDTO));
     }
 

@@ -10,9 +10,8 @@ public class HomeadsApplication {
 
 	public static void main(String[] args) {
 		try {
-			new ProcessBuilder("bash", "-c", "clear").inheritIO().start().waitFor();
+			new ProcessBuilder("bash", "-c", "clear").inheritIO().start().waitFor(); // Linux
 		} catch (InterruptedException | IOException e) {
-			e.printStackTrace();
 			Thread.currentThread().interrupt();
 		}
 
