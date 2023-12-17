@@ -161,7 +161,7 @@ public class TestConfig implements CommandLineRunner {
 		List<Ad> ads = adRepository.saveAll(Arrays.asList(
 				ad1, ad2, ad3, ad4, ad5, ad6, ad7, ad8, ad9, ad10, ad11, ad12, ad13, ad14, ad15, ad16));
 
-		final String PICTURES_FOLDER_PATH = "/home/luizmedeirosn/Downloads/home-ads-backend/src/main/java/com/luizmedeirosn/homeads/configs/data";
+		final String PICTURES_FOLDER_PATH = "/home/luizmedeirosn/Desktop/homeads/home-ads-backend/src/main/java/com/luizmedeirosn/homeads/configs/data";
 		File picturesFolder = new File(PICTURES_FOLDER_PATH);
 		File[] imagesArray = picturesFolder.listFiles(File::isFile);
 

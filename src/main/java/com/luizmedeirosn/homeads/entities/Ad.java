@@ -59,7 +59,7 @@ public class Ad implements Serializable {
     private AdCategoryEnum category;
 
     @Column(name = "publication_date", nullable = false)
-    @DateTimeFormat(pattern = "\"yyyy-MM-dd'T'HH:mm:ss'Z'\"", iso = ISO.DATE_TIME)
+    @DateTimeFormat(iso = ISO.DATE_TIME)
     private Instant publicationDate;
 
     @OneToOne(mappedBy = "ad", cascade = CascadeType.ALL)
@@ -73,7 +73,7 @@ public class Ad implements Serializable {
         comment = postAdDTO.comment();
         averagePrice = new BigDecimal(postAdDTO.averagePrice());
         rating = postAdDTO.rating();
-        category = postAdDTO.category();
+        category = AdCategoryEnum.valueOf(postAdDTO.categoryCode());
         publicationDate = Instant.parse(postAdDTO.publicationDate());
         image = new AdImage(this, postAdDTO.image());
     }
