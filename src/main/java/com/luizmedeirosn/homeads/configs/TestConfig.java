@@ -97,13 +97,13 @@ public class TestConfig implements CommandLineRunner {
 				userRepository.findById(1L).get());
 		Ad ad7 = new Ad(
 				null,
-				"Ventilador de parede",
+				"Máquina de lavar",
 				"Mantenha sua casa fresca e arejada com nosso ventilador de parede silencioso e potente, oferecendo conforto em dias quentes de maneira discreta e eficiente.",
 				new BigDecimal("210.18"), 4, AdCategoryEnum.APPLIANCES, Instant.now(), null,
 				userRepository.findById(1L).get());
 		Ad ad8 = new Ad(
 				null,
-				"Máquina de lavar",
+				"Ventilador de parede",
 				"Eficiência em cada ciclo - nossa máquina de lavar proporciona limpeza poderosa e economia de água, tornando a tarefa de lavar roupa mais simples e sustentável.",
 				new BigDecimal("1030.55"), 5, AdCategoryEnum.APPLIANCES, Instant.now(), null,
 				userRepository.findById(1L).get());

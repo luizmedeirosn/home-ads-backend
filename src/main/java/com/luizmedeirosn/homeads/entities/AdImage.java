@@ -39,7 +39,7 @@ public class AdImage implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "ad_image_filename", unique = true, nullable = false)
+    @Column(name = "ad_image_filename", nullable = false)
     private String adImageFilename;
 
     @Column(name = "image_type", nullable = false)
